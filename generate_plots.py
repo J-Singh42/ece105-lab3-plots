@@ -93,7 +93,7 @@ def plot_boxplot(sensor_a, sensor_b, ax):
     ax.legend()
     ax.grid(axis='y', linestyle=':', alpha=0.6)
 
-
+#function 4
 def plot_histogram(sensor_a, sensor_b, ax):
     """Draw an overlaid histogram of Sensor A and Sensor B temperature data.
 
@@ -122,3 +122,33 @@ def plot_histogram(sensor_a, sensor_b, ax):
     ax.set_title('Overlaid Sensor Temperature Distributions')
     ax.legend()
     ax.grid(True)
+
+
+def main():
+    """Generate sensor data, create plots, and save them to a file.
+
+    This function generates synthetic data for Sensor A and Sensor B,
+    creates a 1x3 subplot figure containing the scatter plot, histogram,
+    and box plot, and saves the result as ``sensor_analysis.png`` at
+    150 DPI with a tight bounding box.
+
+    Returns
+    -------
+    None
+        This function saves the figure to disk and does not return a value.
+    """
+    import matplotlib.pyplot as plt
+
+    sensor_a, sensor_b, timestamps = generate_data(seed=9564)
+
+    fig, axes = plt.subplots(1, 3, figsize=(18, 5))
+    plot_scatter(sensor_a, sensor_b, timestamps, axes[0])
+    plot_histogram(sensor_a, sensor_b, axes[1])
+    plot_boxplot(sensor_a, sensor_b, axes[2])
+
+    fig.tight_layout()
+    fig.savefig('sensor_analysis.png', dpi=150, bbox_inches='tight')
+
+
+if __name__ == '__main__':
+    main()
