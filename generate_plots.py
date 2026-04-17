@@ -64,3 +64,31 @@ def plot_scatter(sensor_a, sensor_b, timestamps, ax):
     ax.set_title('Synthetic Sensor Temperature Readings')
     ax.legend()
     ax.grid(True)
+
+
+def plot_boxplot(sensor_a, sensor_b, ax):
+    """Draw a side-by-side box plot for the two sensor temperature datasets.
+
+    Parameters
+    ----------
+    sensor_a : numpy.ndarray
+        Array of sensor A temperature readings.
+    sensor_b : numpy.ndarray
+        Array of sensor B temperature readings.
+    ax : matplotlib.axes.Axes
+        Matplotlib Axes object on which to draw the box plot.
+
+    Returns
+    -------
+    None
+        The function modifies the provided Axes object in place.
+    """
+    ax.boxplot([sensor_a, sensor_b], labels=['Sensor A', 'Sensor B'], patch_artist=True,
+               boxprops=dict(facecolor='lightgray', edgecolor='black'), medianprops=dict(color='red'))
+    overall_mean = np.concatenate([sensor_a, sensor_b]).mean()
+    ax.axhline(overall_mean, color='black', linestyle='--', linewidth=1.25, label='Overall mean')
+    ax.set_xlabel('Sensor')
+    ax.set_ylabel('Temperature (°C)')
+    ax.set_title('Side-by-Side Box Plot of Sensor Temperatures')
+    ax.legend()
+    ax.grid(axis='y', linestyle=':', alpha=0.6)
