@@ -11,7 +11,7 @@ Usage
 
 import numpy as np
 
-
+#function 1
 def generate_data(seed):
     """Generate synthetic sensor temperature data.
 
@@ -37,7 +37,7 @@ def generate_data(seed):
     sensor_b = rng.normal(loc=27, scale=4.5, size=200)
     return sensor_a, sensor_b, timestamps 
 
-
+#function 2
 def plot_scatter(sensor_a, sensor_b, timestamps, ax):
     """Draw a scatter plot of sensor temperature readings on the given Axes.
 
@@ -65,7 +65,7 @@ def plot_scatter(sensor_a, sensor_b, timestamps, ax):
     ax.legend()
     ax.grid(True)
 
-
+#function 3
 def plot_boxplot(sensor_a, sensor_b, ax):
     """Draw a side-by-side box plot for the two sensor temperature datasets.
 
@@ -92,3 +92,33 @@ def plot_boxplot(sensor_a, sensor_b, ax):
     ax.set_title('Side-by-Side Box Plot of Sensor Temperatures')
     ax.legend()
     ax.grid(axis='y', linestyle=':', alpha=0.6)
+
+
+def plot_histogram(sensor_a, sensor_b, ax):
+    """Draw an overlaid histogram of Sensor A and Sensor B temperature data.
+
+    Parameters
+    ----------
+    sensor_a : numpy.ndarray
+        Array of sensor A temperature readings.
+    sensor_b : numpy.ndarray
+        Array of sensor B temperature readings.
+    ax : matplotlib.axes.Axes
+        Matplotlib Axes object on which to draw the histogram.
+
+    Returns
+    -------
+    None
+        The function modifies the provided Axes object in place.
+    """
+    ax.hist(sensor_a, bins=30, alpha=0.5, color='blue', label='Sensor A')
+    ax.hist(sensor_b, bins=30, alpha=0.5, color='orange', label='Sensor B')
+    mean_a = sensor_a.mean()
+    mean_b = sensor_b.mean()
+    ax.axvline(mean_a, color='blue', linestyle='--', linewidth=1.5, label='Sensor A mean')
+    ax.axvline(mean_b, color='orange', linestyle='--', linewidth=1.5, label='Sensor B mean')
+    ax.set_xlabel('Temperature (°C)')
+    ax.set_ylabel('Frequency')
+    ax.set_title('Overlaid Sensor Temperature Distributions')
+    ax.legend()
+    ax.grid(True)
