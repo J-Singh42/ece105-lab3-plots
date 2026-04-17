@@ -40,4 +40,4 @@ The script produces a single image file named `sensor_analysis.png` containing t
 
 ## AI tools used and disclosure
 
-Placeholder: describe any AI assistance used here.
+This project was assisted by Github Copilot for code completion, suggestions, and problem-solving within the Visual Studio Code environment.
