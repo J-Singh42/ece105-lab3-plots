@@ -123,7 +123,7 @@ def plot_histogram(sensor_a, sensor_b, ax):
     ax.legend()
     ax.grid(True)
 
-
+#function 5
 def main():
     """Generate sensor data, create plots, and save them to a file.
 
